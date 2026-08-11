@@ -3,24 +3,28 @@ import {
     Form
 } from './Searchbar.styled';
 
+// import { toGetData } from '../../added/added';
+
 export class Searchbar extends Component{
     state ={
 
     };
+
+   
     
     render(){
         return (
-            <header class="searchbar">
+            <header className="searchbar">
                 <Form>
-                    <button type="submit" class="button">
-                    <span class="button-label">Search</span>
+                    <button type="submit" className="button">
+                    <span className="button-label">Search</span>
                     </button>
 
                     <input
-                    class="input"
+                    className="input"
                     type="text"
-                    autocomplete="off"
-                    autofocus
+                    autoComplete="off"
+                    autoFocus
                     placeholder="Search images and photos"
                     />
                 </Form>
