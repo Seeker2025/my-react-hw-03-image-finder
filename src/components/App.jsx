@@ -5,34 +5,41 @@ import React, { Component } from 'react';
 
 const key = '51186890-e1c8ef6e5ef4b08950db17a2f';
 const BASE_URL = 'https://pixabay.com/api/';
-const cat = 'cat'
+// const cat = 'cat';
+const hor = 'horizontall';
 export class App extends Component{
 
   state ={
     img: null,
+    search: '',
   }
   
   componentDidMount(){
-    this.getAPIdata();
+    const item = 'sun';
+    const onePage = 1;
+    this.getAPIdata(onePage, item);
   }
 
- async getAPIdata(onePage = 1){
+   componentDidUpdate(prevProps, prevState){
+
+     if(prevState.search!== this.state.search){
+        const item = this.state.search;
+        const onePage = 1;
+        this.getAPIdata( onePage, item);
+     }
+    }
+ async getAPIdata(onePage, item){
     try{
-  await axios.get( `${BASE_URL}?q=${cat}&key=${key}&image_type=photo&orientation=horizontal&page=${onePage}&per_page=12`)
+  await axios.get( `${BASE_URL}?q=${item}&key=${key}&image_type=photo&orientation=${hor}&page=${onePage}&per_page=12`)
         .then(response => {
             console.log(response.data)
             
            const { hits } = response.data;
            console.log(hits[0].webformatURL);
            this.setState({img: hits[0].webformatURL})
-           
-           
      
         });
       }
-                     
-                  
-    
  
     catch(error){
     console.log(error);
@@ -40,6 +47,9 @@ export class App extends Component{
 }
 
 
+  handleSearch = (search) =>{
+        this.setState({ search })
+    }
 
 render(){
 
@@ -48,10 +58,12 @@ render(){
     <div
       // className={css.app}
     >
-      <Searchbar/>
+      <Searchbar handleSearch = {this.handleSearch}/>
       React homework template
       <img src={this.state.img} width="200" alt="cat" />
     </div>
   );
+
 }
-};
+
+}

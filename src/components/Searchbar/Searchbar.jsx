@@ -7,10 +7,18 @@ import {
 
 export class Searchbar extends Component{
     state ={
-
+         value: '',
     };
 
-   
+    handleChange = (e) => {
+        this.setState({ value:e.target.value })
+    }
+
+    handleSubmit = (e) => {
+        e.preventDefault()
+        console.log(this.state);
+        this.props.handleSearch(this.state.value)
+    }
     
     render(){
         return (
@@ -26,6 +34,7 @@ export class Searchbar extends Component{
                     autoComplete="off"
                     autoFocus
                     placeholder="Search images and photos"
+                    onChange ={this.handleChange}
                     />
                 </Form>
             </header>
