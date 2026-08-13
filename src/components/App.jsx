@@ -14,13 +14,19 @@ export class App extends Component{
     search: '',
   }
   
-  componentDidMount(){
-    const item = 'sun';
-    const onePage = 1;
-    this.getAPIdata(onePage, item);
-  }
+  // componentDidMount(){
+  //   const item = 'sun';
+  //   const onePage = 1;
+  //   this.getAPIdata(onePage, item);
+  // }
+
+  
+
+
 
    componentDidUpdate(prevProps, prevState){
+
+    console.log(this.state.search);
 
      if(prevState.search!== this.state.search){
         const item = this.state.search;
@@ -47,9 +53,9 @@ export class App extends Component{
 }
 
 
-  handleSearch = (search) =>{
-        this.setState({ search })
-    }
+handleSearch = (search) =>{
+    this.setState({ search })
+}
 
 render(){
 
