@@ -1,7 +1,9 @@
+import React, { Component } from 'react';
 import { Searchbar  } from "./Searchbar/Searchbar";
+import { ImageGallery } from './ImageGallery/ImageGallery';
 // import css from './App.module.css';
 import axios from 'axios';
-import React, { Component } from 'react';
+
 
 const key = '51186890-e1c8ef6e5ef4b08950db17a2f';
 const BASE_URL = 'https://pixabay.com/api/';
@@ -41,8 +43,9 @@ export class App extends Component{
             console.log(response.data)
             
            const { hits } = response.data;
+           console.log(hits)
            console.log(hits[0].webformatURL);
-           this.setState({img: hits[0].webformatURL})
+           this.setState({img: hits})
      
         });
       }
@@ -65,8 +68,11 @@ render(){
       // className={css.app}
     >
       <Searchbar handleSearch = {this.handleSearch}/>
-      React homework template
-      <img src={this.state.img} width="200" alt="cat" />
+      {/* React homework template */}
+      {/* <img src={this.state.img} width="200" alt="cat" /> */}
+      {console.log(this.state.img)}
+      {this.state.img && <ImageGallery arr={this.state.img}/>}
+      
     </div>
   );
 

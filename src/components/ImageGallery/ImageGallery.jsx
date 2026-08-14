@@ -1,15 +1,20 @@
-export const ImageGallery = () =>{
+import { 
+                                Gallery,
+                                ImageGalleryItem    
+ } from './ImageGallery.styled';
+
+export const ImageGallery = ({arr}) =>{
     return (
         <>
-            <ul class="gallery">
-                { arr.map(itm=>(
-                        <li>
-                <img src={this.state.img} width="200" alt="cat" />            
-                        </li>
-                ))}
-            </ul>
-        
+            <Gallery>
+                { 
+                arr.map(itm=>(
+    <ImageGalleryItem  key={itm.id}>
+        <img src={itm.webformatURL} alt={itm.name.split(', ')[0]} />            
+    </ImageGalleryItem >
+                ))
+                }
+            </Gallery>
         </>
-
     )
 }
