@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import {
-    Form
+    SearchForm,
+    HeaderSearchbar,
+    SearchFormButton,
+    SearchFormInput,
+    SearchFormButtonLabel
+    
 } from './Searchbar.styled';
 
 // import { toGetData } from '../../added/added';
@@ -22,13 +27,15 @@ export class Searchbar extends Component{
     
     render(){
         return (
-            <header className="searchbar">
-                <Form onSubmit={this.handleSubmit}>
-                    <button type="submit" className="button">
-                    <span className="button-label">Search</span>
-                    </button>
+            <>
+            
+            <HeaderSearchbar>
+                <SearchForm onSubmit={this.handleSubmit}>
+                    <SearchFormButton type="submit" className="button">
+                    <SearchFormButtonLabel className="button-label">Search</SearchFormButtonLabel>
+                    </SearchFormButton>
 
-                    <input
+                    <SearchFormInput
                     className="input"
                     type="text"
                     autoComplete="off"
@@ -36,8 +43,9 @@ export class Searchbar extends Component{
                     placeholder="Search images and photos"
                     onChange ={this.handleChange}
                     />
-                </Form>
-            </header>
+                </SearchForm>
+            </HeaderSearchbar>
+            </>
 
         )
     }

@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+
+// import SimpleLightbox from "simplelightbox";
+// import "simplelightbox/dist/simple-lightbox.min.css";
+
 import { Searchbar  } from "./Searchbar/Searchbar";
 import { ImageGallery } from './ImageGallery/ImageGallery';
 // import css from './App.module.css';
@@ -8,7 +12,7 @@ import axios from 'axios';
 const key = '51186890-e1c8ef6e5ef4b08950db17a2f';
 const BASE_URL = 'https://pixabay.com/api/';
 // const cat = 'cat';
-const hor = 'horizontall';
+const hor = 'horizontal';
 export class App extends Component{
 
   state ={
