@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { createPortal } from 'react-dom';
-import { Overlay } from "./Modal.styled";
+import { Overlay, ModalWin, Button } from "./Modal.styled";
+// import closeIcon from '../../search.png';
 const modalRoot = document.querySelector('#modal-root');
 
 export class Modal extends Component{
@@ -12,13 +13,16 @@ export class Modal extends Component{
 
     render(){
 
-        const { big, toClose} = this.props;
+        const { big, toClose } = this.props;
         return createPortal(
-            <Overlay>
-                <Modal>
+            <Overlay onClick ={ toClose }>
+                <ModalWin onClick={e => e.stopPropagation()}>
                     <img src={big} alt="" />
-                </Modal>
-                <button onClick ={ toClose }>X</button>
+
+                        <Button onClick ={ toClose }></Button>
+                        
+                </ModalWin>
+               
             </Overlay>,
             modalRoot,
             

@@ -5,8 +5,9 @@ import React, { Component } from 'react';
 import { 
                                 Gallery,
                                 ImageGalleryItem,
-                                ImageGalleryItemImage    
- } from './ImageGallery.styled';
+                                ImageGalleryItemImage,
+                                Button    
+ }              from './ImageGallery.styled';
 
  import { Modal } from '../Modal/Modal';
 
@@ -19,9 +20,13 @@ export class ImageGallery extends Component{
     getImage = e => {
     this.setState(
         { bigUrl: e.target.dataset.largeimg },
-        () => console.log(this.state.bigUrl)
+        () =>{
+                console.log(this.state.bigUrl)
+                this.toggleModal()
+        }
+        
     );
-    this.toggleModal();
+    
     };
 
     toggleModal = () => {
@@ -32,7 +37,7 @@ export class ImageGallery extends Component{
     };
 
     render(){
-        const { arr } = this.props;
+        const { arr, toPlusOne } = this.props;
     return (
         <>
             <Gallery>
@@ -45,14 +50,16 @@ export class ImageGallery extends Component{
                 alt={itm.name.split(', ')[0]}
                 onClick={this.getImage}
                 />  
-                console.log(itm.largeImageURL);
-                          
         </ImageGalleryItem >
                 ))
                 }
+
+                <Button onClick={toPlusOne}>Next</Button>
             </Gallery>
 
-            {this.state.showModal && <Modal 
+            
+
+             {this.state.showModal && <Modal 
             big={this.state.bigUrl}
             toClose={this.toggleModal}
             />

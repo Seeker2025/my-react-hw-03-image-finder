@@ -16,9 +16,10 @@ const hor = 'horizontal';
 export class App extends Component{
 
   state ={
-    img: null,
-    search: '',
-  }
+          img: [],
+          search: '',
+          page: 1
+  };
   
   // componentDidMount(){
   //   const item = 'sun';
@@ -26,30 +27,39 @@ export class App extends Component{
   //   this.getAPIdata(onePage, item);
   // }
 
+    toPlusOne = () => {
+    this.setState(prevState => ({
+      page: prevState.page + 1
+      }), () => console.log(this.state.page))
+    }
+
   
-
-
-
    componentDidUpdate(prevProps, prevState){
 
     console.log(this.state.search);
+    console.log(this.state.page);
 
-     if(prevState.search!== this.state.search){
+     if(prevState.search !== this.state.search ||
+        prevState.page !== this.state.page
+      ){
         const item = this.state.search;
-        const onePage = 1;
-        this.getAPIdata( onePage, item);
+        const page = this.state.page;
+        this.getAPIdata( page, item);
      }
     }
+
  async getAPIdata(onePage, item){
     try{
   await axios.get( `${BASE_URL}?q=${item}&key=${key}&image_type=photo&orientation=${hor}&page=${onePage}&per_page=12`)
         .then(response => {
-            console.log(response.data)
+           console.log(response.data)
             
-           const { hits } = response.data;
-           console.log(hits)
-           console.log(hits[0].webformatURL);
-           this.setState({img: hits})
+          const { hits } = response.data;
+          console.log(hits)
+          console.log(hits[0].webformatURL);
+          this.setState(prevState => ({
+          img: [...prevState.img, ...hits]
+    }));
      
         });
       }
@@ -65,19 +75,19 @@ handleSearch = (search) =>{
 }
 
 render(){
-
-  
   return (
-    <div
-      // className={css.app}
-    >
-      <Searchbar handleSearch = {this.handleSearch}/>
-      {/* React homework template */}
-      {/* <img src={this.state.img} width="200" alt="cat" /> */}
-      {console.log(this.state.img)}
-      {this.state.img && <ImageGallery arr={this.state.img}/>}
-      
-    </div>
+            <div>
+                  <Searchbar handleSearch = {this.handleSearch}/>
+                  {/* React homework template */}
+                  {/* <img src={this.state.img} width="200" alt="cat" /> */}
+                  {/* {console.log(this.state.img)} */}
+                  {this.state.img.length && 
+                    <ImageGallery 
+                      arr={this.state.img}
+                      toPlusOne={this.toPlusOne}
+                    />
+                  }
+            </div>
   );
 
 }
