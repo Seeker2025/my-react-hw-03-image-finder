@@ -33,8 +33,7 @@ export class App extends Component{
       }), () => console.log(this.state.page))
     }
 
-  
-   componentDidUpdate(prevProps, prevState){
+  componentDidUpdate(prevProps, prevState){
 
     console.log(this.state.search);
     console.log(this.state.page);
@@ -70,8 +69,12 @@ export class App extends Component{
 }
 
 
-handleSearch = (search) =>{
-    this.setState({ search })
+handleSearch = search =>{
+    this.setState({
+       search,
+       img: [],
+       page: 1 
+      })
 }
 
 render(){
@@ -88,8 +91,6 @@ render(){
                     />
                   }
             </div>
-  );
-
-}
-
+          );
+      }
 }
