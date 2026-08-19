@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Oval } from 'react-loader-spinner'
 
 // import SimpleLightbox from "simplelightbox";
 // import "simplelightbox/dist/simple-lightbox.min.css";
@@ -18,7 +19,8 @@ export class App extends Component{
   state ={
           img: [],
           search: '',
-          page: 1
+          page: 1,
+          spinner: false,
   };
   
   // componentDidMount(){
@@ -51,7 +53,7 @@ export class App extends Component{
     try{
   await axios.get( `${BASE_URL}?q=${item}&key=${key}&image_type=photo&orientation=${hor}&page=${onePage}&per_page=12`)
         .then(response => {
-           console.log(response.data)
+          console.log(response.data)
             
           const { hits } = response.data;
           console.log(hits)
@@ -73,7 +75,8 @@ handleSearch = search =>{
     this.setState({
        search,
        img: [],
-       page: 1 
+       page: 1,
+       spinner: true, 
       })
 }
 
@@ -84,12 +87,25 @@ render(){
                   {/* React homework template */}
                   {/* <img src={this.state.img} width="200" alt="cat" /> */}
                   {/* {console.log(this.state.img)} */}
+                  {  this.state.spinner &&  <Oval
+                                height={60}
+                                width={60}
+                                color="#d6d6d6"
+                                visible={true}
+                                ariaLabel="oval-loading"
+                                secondaryColor="#8a8a8a"
+                                strokeWidth={8}
+                                strokeWidthSecondary={7}
+                          />
+                          }
                   {this.state.img.length && 
                     <ImageGallery 
                       arr={this.state.img}
                       toPlusOne={this.toPlusOne}
                     />
                   }
+
+                  
             </div>
           );
       }

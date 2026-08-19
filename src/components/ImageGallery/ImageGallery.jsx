@@ -43,23 +43,25 @@ export class ImageGallery extends Component{
             <Gallery>
                 { 
                 arr.map(itm=>(
-        <ImageGalleryItem  key={itm.id}>
+        <ImageGalleryItem  key={itm.id+itm.largeImageURL}>
             <ImageGalleryItemImage
                 data-largeimg = {itm.largeImageURL}
                 src={itm.webformatURL}
                 alt={itm.name.split(', ')[0]}
                 onClick={this.getImage}
                 />  
+               
         </ImageGalleryItem >
+        
                 ))
                 }
-
-                <Button onClick={toPlusOne}>Next</Button>
+            {console.log('length',arr.length)} 
+            {
+            arr.length < 504 && <Button onClick={toPlusOne}>Next</Button>
+            }
             </Gallery>
 
-            
-
-             {this.state.showModal && <Modal 
+            {this.state.showModal && <Modal 
             big={this.state.bigUrl}
             toClose={this.toggleModal}
             />
