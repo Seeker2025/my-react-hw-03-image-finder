@@ -1,10 +1,11 @@
 import React, { Component } from "react";
+import PropTypes from 'prop-types';
 import {
-    SearchForm,
-    HeaderSearchbar,
-    SearchFormButton,
-    SearchFormInput,
-    SearchFormButtonLabel
+                        SearchForm,
+                        HeaderSearchbar,
+                        SearchFormButton,
+                        SearchFormInput,
+                        SearchFormButtonLabel
     
 } from './Searchbar.styled';
 
@@ -19,10 +20,11 @@ export class Searchbar extends Component{
         this.setState({ value:e.target.value })
     }
 
-    handleSubmit = (e) => {
+    handleSubmit = (e, {resetForm}) => {
         e.preventDefault()
         console.log(this.state);
-        this.props.handleSearch(this.state.value)
+        this.props.handleSearch(this.state.value);
+        resetForm();
     }
     
     render(){
@@ -32,7 +34,7 @@ export class Searchbar extends Component{
             <HeaderSearchbar>
                 <SearchForm onSubmit={this.handleSubmit}>
                     <SearchFormButton type="submit" className="button">
-                    <SearchFormButtonLabel className="button-label">Search</SearchFormButtonLabel>
+                        <SearchFormButtonLabel className="button-label">Search</SearchFormButtonLabel>
                     </SearchFormButton>
 
                     <SearchFormInput
@@ -45,8 +47,13 @@ export class Searchbar extends Component{
                     />
                 </SearchForm>
             </HeaderSearchbar>
+
             </>
 
         )
     }
 }
+
+Searchbar.propTypes = {
+    handleSearch: PropTypes.func.isRequired,
+};

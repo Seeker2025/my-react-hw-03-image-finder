@@ -6,3 +6,9 @@
 
   color: red;
 }
+
+.spinner{
+  border: 1px dashed red;
+  background-color: green;
+  width: 65px;
+}

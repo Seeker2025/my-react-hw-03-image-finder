@@ -7,7 +7,7 @@ import {
                                 ImageGalleryItem,
                                 ImageGalleryItemImage,
                                 Button    
- }              from './ImageGallery.styled';
+        }       from './ImageGallery.styled';
 
  import { Modal } from '../Modal/Modal';
 
@@ -43,12 +43,13 @@ export class ImageGallery extends Component{
             <Gallery>
                 { 
                 arr.map(itm=>(
-        <ImageGalleryItem  key={itm.id+itm.largeImageURL}>
-            <ImageGalleryItemImage
-                data-largeimg = {itm.largeImageURL}
-                src={itm.webformatURL}
-                alt={itm.name.split(', ')[0]}
-                onClick={this.getImage}
+        <ImageGalleryItem  key = {itm.id + itm.largeImageURL}>
+
+                <ImageGalleryItemImage
+                    data-largeimg = {itm.largeImageURL}
+                    src={itm.webformatURL}
+                    alt={itm.name.split(', ')[0]}
+                    onClick={this.getImage}
                 />  
                
         </ImageGalleryItem >
