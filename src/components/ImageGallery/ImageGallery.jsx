@@ -1,5 +1,7 @@
 // import SimpleLightbox from "simplelightbox";
 // import "simplelightbox/dist/simple-lightbox.min.css";
+import PropTypes from 'prop-types';
+
 import React, { Component } from 'react';
 
 import { 
@@ -7,7 +9,7 @@ import {
                                 ImageGalleryItem,
                                 ImageGalleryItemImage,
                                 Button    
-        }       from './ImageGallery.styled';
+        }   from './ImageGallery.styled';
 
  import { Modal } from '../Modal/Modal';
 
@@ -43,14 +45,14 @@ export class ImageGallery extends Component{
             <Gallery>
                 { 
                 arr.map(itm=>(
-        <ImageGalleryItem  key = {itm.id + itm.largeImageURL}>
+        <ImageGalleryItem  key = {itm.id}>
 
-                <ImageGalleryItemImage
-                    data-largeimg = {itm.largeImageURL}
-                    src={itm.webformatURL}
-                    alt={itm.name.split(', ')[0]}
-                    onClick={this.getImage}
-                />  
+                                            <ImageGalleryItemImage
+                                                data-largeimg = {itm.largeImageURL}
+                                                src={itm.webformatURL}
+                                                alt={itm.name.split(', ')[0]}
+                                                onClick={this.getImage}
+                                            />  
                
         </ImageGalleryItem >
         
@@ -70,4 +72,15 @@ export class ImageGallery extends Component{
         </>
     )
 }
+}
+
+ImageGallery.propTypes = {
+    arr: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.number.isRequired,
+            webformatURL: PropTypes.string.isRequired,
+            largeImageURL: PropTypes.string.isRequired,
+        }).isRequired
+    ).isRequired,
+    toPlusOne: PropTypes.func.isRequired,
 }
