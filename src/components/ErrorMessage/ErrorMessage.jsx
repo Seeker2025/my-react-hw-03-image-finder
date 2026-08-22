@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import {
             Card
 } from './ErrorMessage.styled';
@@ -14,3 +16,7 @@ export const ErrorMessage = ({ children }) =>{
         </Card>
     )
 }
+
+ErrorMessage.propTypes = {
+    children: PropTypes.string.isRequired,
+};

@@ -5,10 +5,10 @@ import React, { Component } from 'react';
 // import SimpleLightbox from "simplelightbox";
 // import "simplelightbox/dist/simple-lightbox.min.css";
 
-import { Searchbar  } from "./components/Searchbar/Searchbar";
+import { Searchbar    } from "./components/Searchbar/Searchbar";
 import { ImageGallery } from './components/ImageGallery/ImageGallery';
 import { ErrorMessage } from './components/ErrorMessage/ErrorMessage';
-import { Loader } from './components/Loader/Loader';
+import { Loader       } from './components/Loader/Loader';
 // import css from './App.module.css';
 import axios from 'axios';
 
@@ -77,21 +77,21 @@ export class App extends Component{
         });
       }
  
-    catch(error){
-    console.log(error);
-    this.setState({ spinner: false })
-    }
+                        catch(error){
+                        console.log(error);
+                        this.setState({ spinner: false })
+      }
 }
 
 
 handleSearch = search =>{
-    this.setState({
-       search,
-       img: [],
-       page: 1,
-       spinner: true, 
-       total: 1,
-      })
+                      this.setState({
+                        search,
+                        img: [],
+                        page: 1,
+                        spinner: true, 
+                        total: 1,
+                        })
 }
 
 render(){
@@ -116,10 +116,10 @@ render(){
                     // </div>
                           }
                   {!!this.state.img.length && 
-                    <ImageGallery 
-                      arr={this.state.img}
-                      toPlusOne={this.toPlusOne}
-                    />
+                  <ImageGallery 
+                  arr={this.state.img}
+                  toPlusOne={this.toPlusOne}
+                  />
                   }
 
                   {
@@ -127,7 +127,6 @@ render(){
                   <ErrorMessage>This is ErrorMessage</ErrorMessage>
                   }
 
-                  
             </div>
           );
       }

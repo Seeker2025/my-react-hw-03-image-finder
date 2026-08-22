@@ -29,7 +29,6 @@ export const HeaderSearchbar = styled.header`
   background-color: #3f51b5;
   box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
   0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
-    
 `;
 
 
@@ -49,11 +48,9 @@ export const SearchFormButton = styled.button`
   outline: none;
   background-color: #5f5e5e;
   
-    &:hover{
-      opacity: 1;
-    }
- 
-
+                      &:hover{
+                      opacity: 1;
+                      }
 `;
  
 export const SearchFormInput = styled.input`
@@ -66,10 +63,10 @@ export const SearchFormInput = styled.input`
   padding-left: 15px;
   padding-right: 4px;
 
-   &::placeholder {
-    font: inherit;
-    font-size: 18px;
-  }
+                      &::placeholder {
+                      font: inherit;
+                      font-size: 18px;
+                      }
 `;
 
 

@@ -24,7 +24,7 @@ export class Searchbar extends Component{
         e.preventDefault()
         console.log(this.state);
         this.props.handleSearch(this.state.value);
-        this.setState({ value: ''});
+        this.setState({ value: '' });
     }
     
     render(){

@@ -16,7 +16,7 @@ import {
 export class ImageGallery extends Component{
     state = {
         showModal: false,
-        bigUrl: '1',
+        bigUrl: '',
     };
 
     getImage = e => {
@@ -47,24 +47,31 @@ export class ImageGallery extends Component{
                 arr.map(itm=>(
         <ImageGalleryItem  key = {itm.id}>
 
-                                            <ImageGalleryItemImage
-                                                data-largeimg = {itm.largeImageURL}
-                                                src={itm.webformatURL}
-                                                alt={itm.name.split(', ')[0]}
-                                                onClick={this.getImage}
-                                            />  
+                                <ImageGalleryItemImage
+                                    data-largeimg = {itm.largeImageURL}
+                                    src={itm.webformatURL}
+                                    alt={
+                                        itm.name
+                                        ?
+                                        itm.name.split(', ')[0]
+                                        :
+                                        `Unfortunately there's no alt here`
+                                        }
+                                    onClick={this.getImage}
+                                />  
                
         </ImageGalleryItem >
         
                 ))
                 }
-            {console.log('length',arr.length)} 
+            {/* {console.log('length',arr.length)}  */}
             {
             arr.length < 504 && <Button onClick={toPlusOne}>Next</Button>
             }
             </Gallery>
 
-            {this.state.showModal && <Modal 
+            {this.state.showModal &&
+            <Modal 
             big={this.state.bigUrl}
             toClose={this.toggleModal}
             />
